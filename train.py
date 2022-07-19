@@ -3,7 +3,7 @@ sys.path.insert(0,'./keops')
 
 import os
 os.environ["CUDA_VISIBLE_DEVICES"]="0"
-os.environ["USE_KEOPS"] = "True";
+os.environ["USE_KEOPS"] = "False";
 
 import pickle
 import numpy as np
@@ -24,12 +24,12 @@ def run_training_process(run_params):
     test_data = None
     
     if run_params.dataset in ['Cora', 'CiteSeer', 'PubMed']:
-        train_data = PlanetoidDataset(split='train', name=run_params.dataset, device='cuda')
+        train_data = PlanetoidDataset(split='train', name=run_params.dataset, device='cpu') #TODO device as param
         val_data = PlanetoidDataset(split='val', name=run_params.dataset, samples_per_epoch=1)
         test_data = PlanetoidDataset(split='test', name=run_params.dataset, samples_per_epoch=1)
         
     if run_params.dataset == 'tadpole':
-        train_data = TadpoleDataset(fold=run_params.fold,train=True, device='cuda')
+        train_data = TadpoleDataset(fold=run_params.fold,train=True, device='cpu')
         val_data = test_data = TadpoleDataset(fold=run_params.fold, train=False,samples_per_epoch=1)
                                    
     if train_data is None:

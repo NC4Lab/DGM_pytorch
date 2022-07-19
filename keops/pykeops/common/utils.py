@@ -1,4 +1,4 @@
-import fcntl
+#import fcntl
 import functools
 import importlib.util
 import os
@@ -42,7 +42,7 @@ def cat2axis(cat):
         raise ValueError("Category should be Vi or Vj.")
 
 
-class FileLock:
+"""class FileLock:
     def __init__(self, fd, op=fcntl.LOCK_EX):
         self.fd = fd
         self.op = op
@@ -52,7 +52,7 @@ class FileLock:
         return self
 
     def __exit__(self, exc_type, exc_value, traceback):
-        fcntl.flock(self.fd, fcntl.LOCK_UN)
+        fcntl.flock(self.fd, fcntl.LOCK_UN)"""
 
 
 def create_and_lock_build_folder():
